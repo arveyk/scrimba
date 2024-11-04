@@ -4,6 +4,11 @@ type Person = {
   age: number,
   isStudent: boolean
 }
+type Person = {
+  name: string,
+  age: number,
+  isStudent?: boolean
+}
 
 let person1 = {
   name: "John",
