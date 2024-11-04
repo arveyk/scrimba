@@ -13,18 +13,14 @@ function addNewPizza(pizzaObj) {
     menu.push(pizzaObj);
 }
 
-/**
- * Write another utility function, placeOrder, that takes a pizza name parameter and:
- * 1. finds that pizza object in the menu,
- * 2. adds the income to the cashInRegister,
- * 3. pushes a new "order object" to the orderQueue 
- *    (e.g. { pizza: selectedPizzaObjectFromStep1, status: "ordered" })
- * 4. returns the new order object (just in case we need it later)
- */
-
 function placeOrder(pizza) {
-    let price = menu[pizza];
-    cashInRegister += price;
+    let selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizza);
+    if (!selectedPizza) {
+	    console.error(`${pizza} does not exist`);
+	    return;
+    }
+    cashInRegister += selectedPizza.price;
+    /*
     let n = 0;
     let pizzaObj = menu[n];
     for (let memb = menu[n]; n < menu.length; n++) {
@@ -32,11 +28,28 @@ function placeOrder(pizza) {
             pizzaObj = menu[n];
         }
     }
-	
+   */
     let newOrder = {
-        pizza: pizzaObj,
-        status: 'ordered'
-    };
+	    orderId: orderId
+	    pizza: pizzaObj,
+	    status: 'ordered'	    
+   };
     orderQueue.push(newOrder);
     return newOrder;
 }
+function completeOrder(orderId) {
+    const order = orderQueue.find(order => order.id === orderId)
+    order.status = "completed"
+    return order
+}
+
+addNewPizza({ name: "Chicken Bacon Ranch", cost: 12 })
+addNewPizza({ name: "BBQ Chicken", cost: 12 })
+addNewPizza({ name: "Spicy Sausage", cost: 11 })
+
+placeOrder("Chicken Bacon Ranch")
+completeOrder("1")
+
+console.log("Menu:", menu)
+console.log("Cash in register:", cashInRegister)
+console.log("Order queue:", orderQueue)
