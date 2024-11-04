@@ -5,11 +5,12 @@ const menu = [
     { name: "Veggie", price: 9 },
 ]
 
-const cashInRegister = 100
-const orderQueue = []
+let cashInRegister = 100;
+let orderId = 0;
+const orderQueue = [];
 
 function addNewPizza(pizzaObj) {
-    menu.push(pizzaObj)
+    menu.push(pizzaObj);
 }
 
 /**
