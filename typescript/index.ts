@@ -5,8 +5,8 @@ const menu = [
     { name: "Veggie", price: 9 },
 ]
 
-let cashInRegister = 100;
-let orderId = 0;
+let cashInRegister: number = 100;
+let orderId: number = 0;
 const orderQueue = [];
 
 function addNewPizza(pizzaObj) {
@@ -37,7 +37,7 @@ function placeOrder(pizza) {
     orderQueue.push(newOrder);
     return newOrder;
 }
-function completeOrder(orderId) {
+function completeOrder(orderId: number) {
     const order = orderQueue.find(order => order.id === orderId)
     order.status = "completed"
     return order
